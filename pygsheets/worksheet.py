@@ -451,7 +451,7 @@ class Worksheet(object):
                                include_tailing_empty=include_tailing_empty,
                                include_tailing_empty_rows=include_tailing_empty_rows, **kwargs)
 
-    def get_all_records(self, empty_value='', head=1, majdim='ROWS', **kwargs):
+    def get_all_records(self, empty_value='', head=1, majdim='ROWS', numericise_data=True, **kwargs):
         """
         Returns a list of dictionaries, all of them having
 
@@ -487,7 +487,10 @@ class Worksheet(object):
                 row.extend([""]*(num_keys-len(row)))
             elif len(row) > num_keys:
                 row = row[:num_keys]
-            values.append(numericise_all(row, empty_value))
+            if numericise_data:
+                values.append(numericise_all(row, empty_value))
+            else:
+                values.append(row)
 
         return [dict(zip(keys, row)) for row in values]
 
