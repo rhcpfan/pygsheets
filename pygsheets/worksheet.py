@@ -466,6 +466,7 @@ class Worksheet(object):
         :param head: determines wich row to use as keys, starting from 1
             following the numeration of the spreadsheet.
         :param majdim: ROW or COLUMN major form
+        :param numericise_data: determines if data is converted to numbers or left as string
         :param kwargs: all parameters of :meth:`pygsheets.Worksheet.get_values`
 
         :returns: a list of dict with header column values as head and rows as list
